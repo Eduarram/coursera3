@@ -1,0 +1,47 @@
+---
+title: "codebook"
+output:
+html_document:
+df_print: paged
+---
+the next document it's to simplify in the one table the name is codebook, the table contain max, min, type, standard deviation and names for each variable, in this case i use python code because it's more easy to write csv files on pandas.
+
+## calculate the summaries for each variable
+
+```{r}
+library(tidyverse)
+
+table_mean <- c(map(df, mean))
+table_max <- c(map(df, max))
+table_min <- c(map(df, min))
+table_type <- c(map(df, typeof))
+table_standar_desviation<- c(map(df, sd))
+names <- c(colnames(df))
+
+
+summ_table <- cbind(names, table_type, table_max, table_min, table_mean, table_standar_desviation)
+
+summ_table <- as.tibble(summ_table)
+####usamos el conversor a python
+library(reticulate)
+
+use_python("/home/rodrigo/miniconda3")
+code_book <- r_to_py(summ_table)
+
+pd = import('pandas')
+
+code_book$to_csv('codebok', mode='a', index = FALSE, header=FALSE, sep=',', decimal = '.')
+
+```
+
+
+## use the pyhton conversor
+
+```{python}
+import pandas as pd
+
+code_book.to_csv('codebok', mode='a', index = False, header=False, sep=',', decimal = '.')
+
+
+```
+
