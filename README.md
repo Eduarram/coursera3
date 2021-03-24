@@ -8,3 +8,4 @@ Create one R script called run_analysis.R that does the following:
 important mentions 
 the code have some comands, that we didn't see in this course, but it's more easy for me to use this codes.
 if you have a one suggestion please say me. Tank you 
+i agregate the codebook, the codebook have one  python code chunk and the table with the summary of measures. 
